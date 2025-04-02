@@ -103,7 +103,7 @@ function HeroSection3dr7() {
           >
             <div className="overflow-hidden">
               <motion.h1
-                className="mt-8 text-4xl md:text-7xl font-baloo font-bold text-[#E5D0AC] leading-tight "
+                className="mt-8 text-4xl md:text-7xl font-baloo font-bold text-yellow-300 leading-tight "
                 initial={{ y: 100 }}
                 animate={{ y: 0 }}
                 transition={{
