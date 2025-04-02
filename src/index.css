@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+ .hero-mosaic {
+  display: grid;
+  grid-template-areas:
+    "small1 tall1 wide1"
+    "small1 tall1 small2"
+    "wide2 tall2 tall2";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 1rem;
+  height: 450px;
+}
+
+.item-1 { grid-area: small1; }
+.item-2 { grid-area: tall1; }
+.item-3 { grid-area: wide1; }
+.item-4 { grid-area: small2; }
+.item-5 { grid-area: tall2; }
+.item-6 { grid-area: wide2; }
+
+@media (max-width: 768px) {
+  .hero-mosaic {
+    grid-template-areas:
+      "small1 tall1"
+      "small1 tall1"
+      "wide1 wide1"
+      "small2 tall2";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    height: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-mosaic {
+    display: none;
+  }
+} 
