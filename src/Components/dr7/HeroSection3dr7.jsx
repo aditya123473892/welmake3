@@ -1,96 +1,134 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import dr7 from"../../assets/dr7.png";
+import dr7 from "../../assets/dr7.png";
+import { Bubble } from "../FrothEffect/Bubble";
 
 function HeroSection3dr7() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursorBubbles, setCursorBubbles] = useState([]);
-//comment
+  const canvasRef = useRef(null);
+  const bubbles = useRef([]);
+  const mousePosition = useRef({ x: 0, y: 0 });
+  const animationFrameRef = useRef(null);
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Mouse move handler
   useEffect(() => {
     const handleMouseMove = (e) => {
-      if (cursorBubbles.length > 10) return; // Limit the number of bubbles to 10
+      mousePosition.current = { x: e.clientX, y: e.clientY };
 
-      const newBubble = {
-        id: Date.now(),
-        x: e.clientX,
-        y: e.clientY,
-        size: Math.random() * 100 + 60,
-      };
+      // Add new bubbles near the cursor
+      if (Math.random() > 0.5) {
+        const offsetX = (Math.random() - 0.5) * 40;
+        const offsetY = (Math.random() - 0.5) * 40;
+        addBubble(e.clientX + offsetX, e.clientY + offsetY);
+      }
+    };
 
-      setCursorBubbles((prev) => [...prev, newBubble]);
+    const handleTouchMove = (e) => {
+      if (e.touches.length > 0) {
+        mousePosition.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
 
-      setTimeout(() => {
-        setCursorBubbles((prev) =>
-          prev.filter((bubble) => bubble.id !== newBubble.id)
-        );
-      }, 2000); // Increased timeout duration to 2000ms
+        // Add new bubbles near the touch point
+        if (Math.random() > 0.5) {
+          const offsetX = (Math.random() - 0.5) * 40;
+          const offsetY = (Math.random() - 0.5) * 40;
+          addBubble(e.touches[0].clientX + offsetX, e.touches[0].clientY + offsetY);
+        }
+      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [cursorBubbles]);
+    window.addEventListener("touchmove", handleTouchMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, []);
+
+  // Add a new bubble to the canvas
+  const addBubble = (x, y) => {
+    const radius = window.innerWidth < 768 ? 3 + Math.random() * 10 : 5 + Math.random() * 15; // Smaller bubbles for mobile
+    bubbles.current.push(new Bubble(x, y, radius));
+
+    // Limit number of bubbles for performance
+    const maxBubbles = window.innerWidth < 768 ? 200 : 500; // Fewer bubbles for mobile
+    if (bubbles.current.length > maxBubbles) {
+      // Pop oldest bubbles when we have too many
+      bubbles.current.slice(0, 10).forEach((bubble) => bubble.pop());
+    }
+  };
+
+  // Animation loop
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Set up canvas dimensions
+    canvas.width = dimensions.width;
+    canvas.height = dimensions.height;
+
+    const animate = () => {
+      // Fill the canvas with the background color
+      ctx.fillStyle = "#77B254"; // Apply the green background color
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Update and filter active bubbles
+      bubbles.current = bubbles.current.filter((bubble) =>
+        bubble.update(mousePosition.current.x, mousePosition.current.y, bubbles.current)
+      );
+
+      // Draw all bubbles
+      bubbles.current.forEach((bubble) => bubble.draw(ctx));
+
+      // Add random bubbles occasionally
+      if (Math.random() > 0.95 && bubbles.current.length < 500) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        addBubble(x, y);
+      }
+
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    // Start animation
+    animate();
+
+    // Clean up
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [dimensions]);
 
   return (
     <div className="relative bg-[#77B254] overflow-hidden min-h-[90vh]">
-      {/* Cursor following bubbles */}
-      {cursorBubbles.map((bubble) => (
-        <motion.div
-          key={bubble.id}
-          className="fixed pointer-events-none rounded-full z-50"
-          style={{
-            background: `radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(173, 216, 230, 0.4), rgba(0, 0, 255, 0.2))`,
-            boxShadow: `0px 0px 10px rgba(255, 255, 255, 0.8), inset 0px 0px 15px rgba(173, 216, 230, 0.5)`,
-            filter: `blur(2px)`,
-          }}
-          initial={{
-            width: bubble.size,
-            height: bubble.size,
-            x: bubble.x - bubble.size / 2,
-            y: bubble.y - bubble.size / 2,
-            opacity: 0.9,
-            scale: 0.3,
-          }}
-          animate={{
-            opacity: [0.9, 0.6, 0.3, 0],
-            scale: [0.3, 1.1, 0.9, 0.7], // Adds a slight shrink effect before disappearing
-            y: bubble.y - bubble.size / 2 - 150,
-          }}
-          transition={{
-            duration: 2.5, // Increased duration for a slower pop
-            ease: "easeOut",
-          }}
-        />
-      ))}
+      {/* Canvas for bubbles */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+      />
 
-      {/* Background bubbles - Reduced movement and more subtle */}
-      <div className="absolute inset-0">
-        {[...Array(4)].map((_, i) => ( // Reduced from 12 to 6
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-[#77B254] backdrop-blur-sm"
-            style={{
-              width: `${Math.random() * 180 + 100}px`,
-              height: `${Math.random() * 180 + 100}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{
-              opacity: [0.2, 0.4, 0.2],
-              scale: [1, 1.05, 1], // Reduced scale change
-              y: [0, -20, 0], // Reduced vertical movement
-            }}
-            transition={{
-              duration: 12, // Slower animation
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-              delay: i * 0.5, // Staggered delay for more natural movement
-            }}
-          />
-        ))}
-      </div>
       {/* Main content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-15">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -103,7 +141,7 @@ function HeroSection3dr7() {
           >
             <div className="overflow-hidden">
               <motion.h1
-                className="mt-8 text-4xl md:text-7xl font-baloo font-bold text-yellow-300 leading-tight "
+                className="mt-8 text-4xl md:text-7xl font-baloo font-bold text-[#E5D0AC] leading-tight"
                 initial={{ y: 100 }}
                 animate={{ y: 0 }}
                 transition={{
@@ -111,7 +149,7 @@ function HeroSection3dr7() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                 चिकनाई पर सख्त,
+                चिकनाई पर सख्त,
                 <br />
                 <motion.span
                   className="text-white inline-block mb-5 mt-1"
@@ -123,7 +161,7 @@ function HeroSection3dr7() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-               हाथों पर कोमल!
+                  हाथों पर कोमल!
                 </motion.span>
               </motion.h1>
             </div>
@@ -138,9 +176,11 @@ function HeroSection3dr7() {
                 ease: "easeOut",
               }}
             >
-             Dr.7 Dish Wash Bar delivers spotless, grease-free dishes while being gentle on hands. Its powerful formula removes
-              tough stains effortlessly, yet stays skin-friendly. With eco-friendly 
-              ingredients and a refreshing fragrance, it ensures a safe, sustainable clean every time.
+              Dr.7 Dish Wash Bar delivers spotless, grease-free dishes while
+              being gentle on hands. Its powerful formula removes tough stains
+              effortlessly, yet stays skin-friendly. With eco-friendly
+              ingredients and a refreshing fragrance, it ensures a safe,
+              sustainable clean every time.
             </motion.p>
 
             <motion.div
@@ -169,7 +209,7 @@ function HeroSection3dr7() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <motion.span className="relative z-10 font-baloo font-bold  flex items-center justify-center gap-3">
+                  <motion.span className="relative z-10 font-baloo font-bold flex items-center justify-center gap-3">
                     Shop Now
                     <motion.span
                       whileHover={{ x: 5 }}
@@ -183,7 +223,7 @@ function HeroSection3dr7() {
             </motion.div>
           </motion.div>
 
-          {/* Product showcase - Simplified */}
+          {/* Product showcase */}
           <motion.div
             className="relative"
             initial={{ opacity: 0 }}
@@ -192,7 +232,7 @@ function HeroSection3dr7() {
           >
             <div className="relative aspect-square">
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-yellow-200/40 to-yellow-100/40 rounded-full"
+                className="absolute inset-0 bg-[#77B254] rounded-full"
                 animate={{
                   scale: [1, 1.02, 1],
                 }}
@@ -218,7 +258,7 @@ function HeroSection3dr7() {
               >
                 <motion.img
                   src={dr7}
-                  alt="G wash liquid"
+                  alt="Dr.7 Dish Wash Bar"
                   className="w-4/5 h-4/5 object-contain"
                   animate={{
                     scale: [1, 1.01, 1],

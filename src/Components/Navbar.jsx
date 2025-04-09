@@ -57,40 +57,58 @@ const WellMakeNavbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <NavLink
               to="/contact"
-              className="text-blue-800  text-lg font-baloo font-bold tracking-wide  hover:text-blue-600 transition-colors duration-300 relative overflow-hidden group"
+              className="text-blue-800 text-lg font-baloo font-bold tracking-wide hover:text-blue-600 transition-colors duration-300 relative group"
             >
               <span>Contact us</span>
               <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
+              {/* Pop-up effect */}
+              <div className="flex items-center justify-center absolute z-50 top-full left-1/2 transform -translate-x-1/2 mt-2 px-6 py-3 bg-white text-blue-800 text-sm font-medium rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-48">
+                Get in touch with us!
+              </div>
             </NavLink>
             <NavLink
               to="/about"
-              className="text-blue-800 font-bold font-baloo  text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative overflow-hidden group"
+              className="text-blue-800 font-bold font-baloo text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative group"
             >
               <span>About us</span>
               <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
+              {/* Pop-up effect */}
+              <div className="flex items-center justify-center absolute z-50 top-full left-1/2 transform -translate-x-1/2 mt-2 px-6 py-3 bg-white text-blue-800 text-sm font-medium rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-48">
+                Learn more about us!
+              </div>
             </NavLink>
-
             <NavLink
               to="/career"
-              className="text-blue-800 font-bold font-baloo  text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative overflow-hidden group"
+              className="text-blue-800 font-bold font-baloo text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative group"
             >
               <span>Career</span>
               <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
+              {/* Pop-up effect */}
+              <div className="flex items-center justify-center absolute z-50 top-full left-1/2 transform -translate-x-1/2 mt-2 px-6 py-3 bg-white text-blue-800 text-sm font-medium rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-48">
+                Join our team!
+              </div>
             </NavLink>
-
             <NavLink
               to="/gwash"
-              className="text-blue-800 font-bold font-baloo  text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative overflow-hidden group"
+              className="text-blue-800 font-bold font-baloo text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative group"
             >
               <span>G wash</span>
               <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
+              {/* Pop-up effect */}
+              <div className="flex items-center justify-center absolute z-50 top-full left-1/2 transform -translate-x-1/2 mt-2 px-6 py-3 bg-white text-blue-800 text-sm font-medium rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-48">
+                Explore G Wash!
+              </div>
             </NavLink>
             <NavLink
               to="/dr7"
-              className="text-blue-800 font-bold font-baloo  text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative overflow-hidden group"
+              className="text-blue-800 font-bold font-baloo text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative group"
             >
               <span>Dr. 7</span>
               <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
+              {/* Pop-up effect */}
+              <div className=" flex items-center justify-center absolute z-50 top-full left-1/2 transform -translate-x-1/2 mt-2 px-6 py-3 bg-white text-blue-800 text-sm font-medium rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-48">
+                Discover Dr. 7!
+              </div>
             </NavLink>
           </div>
 
