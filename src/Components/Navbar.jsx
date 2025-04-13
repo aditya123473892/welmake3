@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
-import {Car, Link} from 'lucide-react';
-import {NavLink, Outlet } from "react-router-dom";
+import { motion } from "framer-motion"; 
+import { NavLink, Outlet } from "react-router-dom";
 
 const WellMakeNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,6 +16,20 @@ const WellMakeNavbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Animation variants for links
+  const linkVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (index) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: index * 0.2, // Stagger animation for each link
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    }),
+  };
 
   return (
     <div className="relative">
@@ -55,68 +69,49 @@ const WellMakeNavbar = () => {
 
           {/* Desktop navigation links */}
           <div className="hidden md:flex items-center space-x-8">
-            <NavLink
-              to="/contact"
-              className="text-blue-800 text-lg font-baloo font-bold tracking-wide hover:text-blue-600 transition-colors duration-300 relative group"
-            >
-              <span>Contact us</span>
-              <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
-              {/* Pop-up effect */}
-              <div className="flex items-center justify-center absolute z-50 top-full left-1/2 transform -translate-x-1/2 mt-2 px-6 py-3 bg-white text-blue-800 text-sm font-medium rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-48">
-                Get in touch with us!
-              </div>
-            </NavLink>
-            <NavLink
-              to="/about"
-              className="text-blue-800 font-bold font-baloo text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative group"
-            >
-              <span>About us</span>
-              <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
-              {/* Pop-up effect */}
-              <div className="flex items-center justify-center absolute z-50 top-full left-1/2 transform -translate-x-1/2 mt-2 px-6 py-3 bg-white text-blue-800 text-sm font-medium rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-48">
-                Learn more about us!
-              </div>
-            </NavLink>
-            <NavLink
-              to="/career"
-              className="text-blue-800 font-bold font-baloo text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative group"
-            >
-              <span>Career</span>
-              <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
-              {/* Pop-up effect */}
-              <div className="flex items-center justify-center absolute z-50 top-full left-1/2 transform -translate-x-1/2 mt-2 px-6 py-3 bg-white text-blue-800 text-sm font-medium rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-48">
-                Join our team!
-              </div>
-            </NavLink>
-            <NavLink
-              to="/gwash"
-              className="text-blue-800 font-bold font-baloo text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative group"
-            >
-              <span>G wash</span>
-              <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
-              {/* Pop-up effect */}
-              <div className="flex items-center justify-center absolute z-50 top-full left-1/2 transform -translate-x-1/2 mt-2 px-6 py-3 bg-white text-blue-800 text-sm font-medium rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-48">
-                Explore G Wash!
-              </div>
-            </NavLink>
-            <NavLink
-              to="/dr7"
-              className="text-blue-800 font-bold font-baloo text-lg tracking-wide hover:text-blue-600 transition-colors duration-300 relative group"
-            >
-              <span>Dr. 7</span>
-              <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
-              {/* Pop-up effect */}
-              <div className=" flex items-center justify-center absolute z-50 top-full left-1/2 transform -translate-x-1/2 mt-2 px-6 py-3 bg-white text-blue-800 text-sm font-medium rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-48">
-                Discover Dr. 7!
-              </div>
-            </NavLink>
+            {[
+              { name: "Contact us", path: "/contact" },
+              { name: "About us", path: "/about" },
+              { name: "Career", path: "/career" },
+              { name: "G wash", path: "/gwash" },
+              { name: "Dr. 7", path: "/dr7" },
+            ].map((link, index) => (
+              <motion.div
+                key={link.name}
+                custom={index}
+                initial="hidden"
+                animate="visible"
+                variants={linkVariants}
+                className="relative group"
+              >
+                <NavLink
+                  to={link.path}
+                  className="text-blue-800 text-lg font-baloo font-bold tracking-wide relative group"
+                >
+                  {/* Link text with hover scale effect */}
+                  <motion.span
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="relative z-10"
+                  >
+                    {link.name}
+                  </motion.span>
+
+                  {/* Underline hover effect */}
+                  <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
+
+                  {/* Glow effect on hover */}
+                  {/* <span className="absolute inset-0 bg-blue-100 opacity-0 group-hover:opacity-50 rounded-lg transition-opacity duration-300"></span> */}
+                </NavLink>
+              </motion.div>
+            ))}
           </div>
 
           {/* Right button (hidden on smallest screens) */}
           <div className="hidden sm:block">
             <a
               href="https://api.whatsapp.com/send/?phone=7773003300&text&type=phone_number&app_absent=0"
-              className="bg-white text-blue-800  py-2 px-6 font-baloo font-bold rounded-full shadow-md hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              className="bg-white text-blue-800 py-2 px-6 font-baloo font-bold rounded-full shadow-md hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
             >
               Order Now
             </a>
@@ -185,7 +180,6 @@ const WellMakeNavbar = () => {
         <div className="rounded-full bg-white p-1 shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
           <div className="rounded-full border-4 border-blue-600 overflow-hidden sm:w-24 sm:h-24 w-16 h-16">
             <NavLink to="/">
-              {" "}
               <img
                 src={logo}
                 alt="WellMake Logo"
