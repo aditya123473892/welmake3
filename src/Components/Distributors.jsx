@@ -30,7 +30,28 @@ const statesData = [
     town: "Jaora",
     state: "Madhya Pradesh",
     contactDetails: ["+91 83194 96332"],
+  },{
+    firmName: "Darshan Agency",
+    district: "Khandwa",
+    town: "Khandwa City",
+    state: "Madhya Pradesh",
+    contactDetails: ["+91 94074 55404"],
   },
+  {
+    firmName: "Nandlal & Sons",
+    district: "Dhar",
+    town: "Manawar",
+    state: "Madhya Pradesh",
+    contactDetails: ["+91 93298 26551"],
+  },
+  {
+    firmName: "Nayan Enterprise",
+    district: "Khargone",
+    town: "Khargone City",
+    state: "Madhya Pradesh",
+    contactDetails: ["+91 98930 64666"],
+  }
+
 ];
 
 function Distributors() {
