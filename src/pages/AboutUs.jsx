@@ -67,15 +67,15 @@ const AboutUs = () => {
   ];
 
   // Partner companies data
-  const partners = [
-    "Microsoft",
-    "Google", 
-    "Amazon", 
-    "Apple", 
-    "Tesla", 
-    "IBM", 
-    "Oracle"
-  ];
+  // const partners = [
+  //   "Microsoft",
+  //   "Google", 
+  //   "Amazon", 
+  //   "Apple", 
+  //   "Tesla", 
+  //   "IBM", 
+  //   "Oracle"
+  // ];
 
   // Slick Carousel settings for team members
   const teamSliderSettings = {
@@ -105,31 +105,31 @@ const AboutUs = () => {
   };
 
   // Slick Carousel settings for partners
-  const partnerSliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
+  // const partnerSliderSettings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 3,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   autoplaySpeed: 4000,
+  //   responsive: [
+  //     {
+  //       breakpoint: 1024,
+  //       settings: {
+  //         slidesToShow: 2,
+  //         slidesToScroll: 1,
+  //       }
+  //     },
+  //     {
+  //       breakpoint: 600,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1
+  //       }
+  //     }
+  //   ]
+  // };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -229,7 +229,7 @@ const AboutUs = () => {
       </div>
         
       {/* Partners Section with Slick Carousel */}
-      <div className="bg-Byellow py-12 px-4 sm:px-6 lg:px-8 text-center">
+      {/* <div className="bg-Byellow py-12 px-4 sm:px-6 lg:px-8 text-center">
         <p className="text-lg sm:text-xl font-medium font-baloo mb-10 text-blue-900">
           Trusted by the best companies worldwide
         </p>
@@ -245,7 +245,7 @@ const AboutUs = () => {
             ))}
           </Slider>
         </div>
-      </div>
+      </div> */}
     
       <Footer />
     </div>
