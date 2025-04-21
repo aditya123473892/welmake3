@@ -9,6 +9,7 @@ import {
   FaBullseye,
   FaClipboardCheck,
 } from "react-icons/fa";
+import ApplyButton from "../Components/ApplyButton";
 
 const ValueCard = ({ icon: Icon, title, description }) => (
   <div className="value-card animate-fade-in bg-white rounded-lg p-6 flex flex-col items-center justify-center text-center font-baloo ">
@@ -250,6 +251,10 @@ function Career() {
           </div>
         </div>
       </section>
+      {/* apply  */}
+      <div className="flex justify-center items-center ">
+       <ApplyButton/>
+      </div>
       <Footer />
     </div>
   );
