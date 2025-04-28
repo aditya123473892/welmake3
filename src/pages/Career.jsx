@@ -1,6 +1,13 @@
 import React, { useRef } from "react";
+
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import image_12 from "../assets/image_12.jpg";
+import image_13 from "../assets/image_13.jpg";
+import image_14 from "../assets/image_14.jpg";
+import image_15 from "../assets/image_15.jpg";
+import image_16 from "../assets/image_16.jpg";
+import image_18 from "../assets/image_18.png";
 import {
   FaCheckCircle,
   FaUsers,
@@ -21,25 +28,25 @@ const ValueCard = ({ icon: Icon, title, description }) => (
 
 const jobs = [
   {
-    title: "Full-Stack Engineer",
-    location: "San Francisco, CA",
+    title: "Sales and Marketing Executive",
+    location: "Madhya Pradesh, India ",
     type: "Full-time",
     postedDate: "3 weeks ago",
-    applicationCount: 42,
+    applicationCount: 5,
   },
   {
-    title: "Senior UI/UX Designer",
-    location: "New York, NY",
+    title: "Production Superviso",
+    location: "Madhya Pradesh, India ",
     type: "Full-time",
     postedDate: "2 days ago",
-    applicationCount: 18,
+    applicationCount: 2,
   },
   {
-    title: "Product Manager",
-    location: "Remote",
+    title: "Quality Control Analyst ",
+    location: "Madhya Pradesh, India ",
     type: "Full-time",
     postedDate: "1 week ago",
-    applicationCount: 36,
+    applicationCount: 2,
   },
 ];
 
@@ -53,27 +60,27 @@ function Career() {
   //images
   const images = [
     {
-      src: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+      src: image_12,
       alt: "Technology",
     },
     {
-      src: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
+      src: image_14,
       alt: "Remote work",
     },
     {
-      src: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+      src: image_15,
       alt: "Tech components",
     },
     {
-      src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+      src: image_16,
       alt: "Coding",
     },
     {
-      src: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+      src: image_18,
       alt: "Working on laptop",
     },
     {
-      src: "https://images.unsplash.com/photo-1573164713988-8665fc963095",
+      src: image_13,
       alt: "Tech office",
     },
   ];
@@ -81,7 +88,7 @@ function Career() {
   return (
     <div>
       <Navbar />
-      <section className="relative py-12 overflow-hidden bg-gray-100">
+      <section className="relative py-12 overflow-hidden bg-gray-100 ">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-8 items-center font-baloo">
             <div className="w-full md:w-1/2 animate-fade-in">
@@ -124,7 +131,7 @@ function Career() {
         </div>
       </section>
       {/* value section */}
-      <section className="py-12 bg-Byellow">
+      <section className="py-12 bg-Byellow ">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center font-baloo">
             Our values
@@ -252,9 +259,9 @@ function Career() {
         </div>
       </section>
       {/* apply  */}
-      <div className="flex justify-center items-center ">
-       <ApplyButton/>
-      </div>
+      {/* <div className="flex justify-center items-center ">
+        <ApplyButton />
+      </div> */}
       <Footer />
     </div>
   );

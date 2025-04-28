@@ -15,65 +15,76 @@ import manufacture from "../assets/manufacturing.png";
 const AboutUs = () => {
   // Team members data
   const teamMembers = [
-    { 
-      id: 1, 
-      name: "Sarthak Gupta", 
-      img:ceo,
-      role: "Cheif Executive Officer", 
+    {
+      id: 1,
+      name: "Sarthak Gupta",
+      img: ceo,
+      role: "Cheif Executive Officer",
       bio: "Visionary leader with 20+ years of strategic management experience.",
-      specialties: ["Strategic Planning", "Innovation", "Global Business"]
+      specialties: ["Strategic Planning", "Innovation", "Global Business"],
     },
-    { 
-      id: 2, 
-      name: "Dharmendra Choudhary", 
+    {
+      id: 2,
+      name: "Dharmendra Choudhary",
       img: dispatch,
-      role: "Disptach Head", 
+      role: "Disptach Head",
       bio: "Tech innovator driving digital transformation and cutting-edge solutions.",
-      specialties: ["Technology Strategy", "AI", "Product Development"]
+      specialties: ["Technology Strategy", "AI", "Product Development"],
     },
-    { 
-      id: 3, 
-      name: " Arun Dhakad", 
-      img:operationhead,
-      role: "Operations Head", 
+    {
+      id: 3,
+      name: " Arun Dhakad",
+      img: operationhead,
+      role: "Operations Head",
       bio: "Financial expert ensuring sustainable growth and fiscal responsibility.",
-      specialties: ["Financial Strategy", "Risk Management", "Investment"]
+      specialties: ["Financial Strategy", "Risk Management", "Investment"],
     },
-    { 
-      id: 4, 
-      name: "Atul Kasera", 
-      img:onlinemedia,
-      role: " Online Meadia Head", 
+    {
+      id: 4,
+      name: "Atul Kasera",
+      img: onlinemedia,
+      role: " Online Meadia Head",
       bio: "Operations mastermind optimizing efficiency and operational excellence.",
-      specialties: ["Process Optimization", "Supply Chain", "Organizational Development"]
+      specialties: [
+        "Process Optimization",
+        "Supply Chain",
+        "Organizational Development",
+      ],
     },
-    { 
-      id: 5, 
-      name: "Ravi Malakar", 
-      role: "Manufacturing Head", 
-      img:manufacture,
+    {
+      id: 5,
+      name: "Ravi Malakar",
+      role: "Manufacturing Head",
+      img: manufacture,
       bio: "Marketing strategist building powerful brand narratives and customer connections.",
-      specialties: ["Brand Strategy", "Digital Marketing", "Customer Experience"]
+      specialties: [
+        "Brand Strategy",
+        "Digital Marketing",
+        "Customer Experience",
+      ],
     },
-    { 
-      id: 6, 
-      name: "Sujata Malviya", 
-      role: "Customer Relationship Head", 
-      img:customer,
+    {
+      id: 6,
+      name: "Sujata Malviya",
+      role: "Customer Relationship Head",
+      img: customer,
       bio: "Marketing strategist building powerful brand narratives and customer connections.",
-      specialties: ["Brand Strategy", "Digital Marketing", "Customer Experience"]
+      specialties: [
+        "Brand Strategy",
+        "Digital Marketing",
+        "Customer Experience",
+      ],
     },
- 
   ];
 
   // Partner companies data
   // const partners = [
   //   "Microsoft",
-  //   "Google", 
-  //   "Amazon", 
-  //   "Apple", 
-  //   "Tesla", 
-  //   "IBM", 
+  //   "Google",
+  //   "Amazon",
+  //   "Apple",
+  //   "Tesla",
+  //   "IBM",
   //   "Oracle"
   // ];
 
@@ -92,16 +103,16 @@ const AboutUs = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-        }
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   // Slick Carousel settings for partners
@@ -134,15 +145,52 @@ const AboutUs = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       {/* Logo and Header Section */}
-      <div className="bg-gray-200 py-16 px-4 sm:px-6 lg:px-8 text-center">
+      {/* <div className="bg-gray-200 py-16 px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl font-bold uppercase tracking-wider mb-4">
           Video of Company Management
         </h2>
         <div className="w-24 h-1 bg-blue-800 mx-auto mb-8"></div>
-      </div>
+      </div> */}
 
+      {/* Vision & Mission Section */}
+      <div className="max-w-7xl mx-auto px-4 py-24 font-baloo">
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Vision Card */}
+          <div className="bg-Byellow backdrop-blur-lg rounded-2xl p-8 transform hover:scale-105 transition-transform duration-300">
+            <div className="flex items-center mb-6">
+              <Target className="w-10 h-10 text-blue-400 mr-4" />
+              <h2 className="text-3xl font-bold">Our Vision</h2>
+            </div>
+            <p className="text-black leading-relaxed">
+              We aim to make the brand by creating it, partnering or by
+              acquisition of existing offerings. with every brand we believe to
+              add value to the customers life. we work to create a better
+              sustainable future and every action we take, we try to enhance the
+              trust into our organization
+            </p>
+          </div>
+
+          {/* Mission Card */}
+          <div className="bg-Byellow backdrop-blur-lg rounded-2xl p-8 transform hover:scale-105 transition-transform duration-300">
+            <div className="flex items-center mb-6">
+              <Compass className="w-10 h-10 text-blue-400 mr-4" />
+              <h2 className="text-3xl font-bold">Our Mission</h2>
+            </div>
+            <p className="text-black leading-relaxed">
+              Our mission is to develop and manufacture high-quality products
+              that exceed customer expectations while prioritizing
+              sustainability and environmental responsibility in all aspects of
+              our operations. We are committed to continuous innovation and
+              improvement to meet evolving consumer needs and preferences.
+              Additionally, we strive to build strong relationships with
+              customers, suppliers, and stakeholders based on trust, integrity,
+              and mutual respect.
+            </p>
+          </div>
+        </div>
+      </div>
       {/* Yellow Description Section */}
       <div className="bg-Byellow py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -164,40 +212,6 @@ const AboutUs = () => {
               delivering value and exceptional results to our clients worldwide.
             </span>
           </p>
-        </div>
-      </div>
-         {/* Vision & Mission Section */}
-         <div className="max-w-7xl mx-auto px-4 py-24 font-baloo">
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Vision Card */}
-          <div className="bg-Byellow backdrop-blur-lg rounded-2xl p-8 transform hover:scale-105 transition-transform duration-300">
-            <div className="flex items-center mb-6">
-              <Target className="w-10 h-10 text-blue-400 mr-4" />
-              <h2 className="text-3xl font-bold">Our Vision</h2>
-            </div>
-            <p className="text-black leading-relaxed">
-            We aim to make the brand by creating it, partnering or by acquisition of 
-            existing offerings. with every brand we believe to add value to the customers life. 
-            we work to create a better sustainable future and every action we take,
-             we try to enhance the trust into our organization
-            </p>
-          </div>
-
-          {/* Mission Card */}
-          <div className="bg-Byellow backdrop-blur-lg rounded-2xl p-8 transform hover:scale-105 transition-transform duration-300">
-            <div className="flex items-center mb-6">
-              <Compass className="w-10 h-10 text-blue-400 mr-4" />
-              <h2 className="text-3xl font-bold">Our Mission</h2>
-            </div>
-            <p className="text-black leading-relaxed">
-            Our mission is to develop and manufacture high-quality products that exceed customer expectations 
-            while prioritizing sustainability and environmental responsibility in all 
-            aspects of our operations. We are committed to continuous innovation and 
-            improvement to meet evolving consumer needs and preferences. 
-            Additionally, we strive to build strong relationships with customers, 
-            suppliers, and stakeholders based on trust, integrity, and mutual respect.
-            </p>
-          </div>
         </div>
       </div>
       {/* Team Section with Slick Carousel */}
@@ -227,7 +241,7 @@ const AboutUs = () => {
           </Slider>
         </div>
       </div>
-        
+
       {/* Partners Section with Slick Carousel */}
       {/* <div className="bg-Byellow py-12 px-4 sm:px-6 lg:px-8 text-center">
         <p className="text-lg sm:text-xl font-medium font-baloo mb-10 text-blue-900">
@@ -246,11 +260,10 @@ const AboutUs = () => {
           </Slider>
         </div>
       </div> */}
-    
+
       <Footer />
     </div>
   );
-  
 };
 
 export default AboutUs;
