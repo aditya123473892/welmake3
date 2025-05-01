@@ -73,7 +73,11 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 pt-8 border-t border-white/20 text-center  md:text-right">
-          <div className="flex flex-col md:flex-row justify-end gap-4 font-baloo font-semibold text-lg"></div>
+          <div className="flex flex-col md:flex-row justify-end gap-4 font-baloo font-semibold text-lg">
+             <a href="#" className="hover:underline">© Copyright welmake. All Rights Reserved</a>
+            <span className="hidden md:inline text-xl font-baloo">|</span>
+            <a href="https://devrazers1-1.vercel.app/" className="hover:underline"> Design & Developed by  Devrazers</a>
+          </div>
         </div>
       </div>
     </footer>
