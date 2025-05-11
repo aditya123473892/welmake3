@@ -1,6 +1,8 @@
 import React from "react";
 import { Instagram, Facebook, MessageCircle } from "lucide-react";
 import logo from "../assets/logo2.png";
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-[#C2803D] text-white py-12">
@@ -21,24 +23,24 @@ const Footer = () => {
             <h3 className="text-2xl font-bold mb-4 font-baloo">EXPLORE</h3>
             <ul className="font-baloo">
               <li className="mb-2">
-                <a href="/" className="hover:underline text-xl">
+                <Link to="/" className="hover:underline text-xl">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="mb-2">
-                <a href="/about" className="hover:underline text-xl">
+                <Link to="/about" className="hover:underline text-xl">
                   About Us
-                </a>
+                </Link>
               </li>
               <li className="mb-2">
-                <a href="/contact" className="hover:underline text-xl">
+                <Link to="/contact" className="hover:underline text-xl">
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li className="mb-2">
-                <a href="/career" className="hover:underline text-xl">
+                <Link to="/career" className="hover:underline text-xl">
                   Career
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -48,35 +50,56 @@ const Footer = () => {
             <div className="flex gap-4">
               <a
                 href="https://www.instagram.com/welmake_india/"
-                className="hover:text-gray-300 "
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-300"
               >
                 <Instagram size={24} />
               </a>
-              <a href="#" className="hover:text-gray-300">
+              <a
+                href="https://www.facebook.com/welmakeindia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-300"
+              >
                 <Facebook size={24} />
               </a>
-              <a href="#" className="hover:text-gray-300">
+              <a
+                href="https://api.whatsapp.com/send/?phone=7773003300"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-300"
+              >
                 <MessageCircle size={24} />
               </a>
               <li className="mb-2">
-                <a href="/gwash" className="hover:underline text-xl">
+                <Link to="/gwash" className="hover:underline text-xl">
                   G wash
-                </a>
-              </li>{" "}
+                </Link>
+              </li>
               <li className="mb-2">
-                <a href="/dr7" className="hover:underline text-xl">
+                <Link to="/dr7" className="hover:underline text-xl">
                   Dr.7
-                </a>
+                </Link>
               </li>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-white/20 text-center  md:text-right">
+        <div className="mt-8 pt-8 border-t border-white/20 text-center md:text-right">
           <div className="flex flex-col md:flex-row justify-end gap-4 font-baloo font-semibold text-lg">
-             <a href="#" className="hover:underline">© Copyright welmake. All Rights Reserved</a>
+            <span className="hover:underline">
+              © Copyright welmake. All Rights Reserved
+            </span>
             <span className="hidden md:inline text-xl font-baloo">|</span>
-            <a href="https://devrazers1-1.vercel.app/" className="hover:underline"> Design & Developed by  Devrazers</a>
+            <a
+              href="https://devrazers1-1.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              Design & Developed by Devrazers
+            </a>
           </div>
         </div>
       </div>
